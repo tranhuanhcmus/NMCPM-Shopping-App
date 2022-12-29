@@ -1,39 +1,22 @@
-const { verifyToken,verifyTokenAndAuthorization, verifyTokenAndAdmin } = require("./verifyToken");
-const User = require("../models/User");
-
+const controller = require("../controllers/user");
 const router = require("express").Router();
-router.put("/:id",verifyTokenAndAuthorization,async (req,res)=>{
-    if(req.body.password){
-        req.body.password= CryptoJS.AES.encrypt(req.body.password,process.env.PASSWORD_SC).toString();
-    }
-    try{
-        const updateUser = await User.findByIdAndUpdate(req.params.id,{
-            $set: req.body
-        },{new: true});
-        res.status(200).json(updateUser);
-    }catch(err){
-        res.status(500).json(err);
-    }
-});
+const {
+    verifyTokenAndAuthorization,
+    verifyTokenAndAdmin,
+} = require("./verifyToken");
+
+//update
+router.put("/:id", verifyTokenAndAuthorization, controller.updateUserbyId);
 
 //delete
-router.delete("/:id",verifyTokenAndAuthorization, async (req,res)=>{
-    try{
-        await User.findByIdDelete(req.params.id);
-        res.status(200).json("user has been delete")
-    }catch(err){
-        res.status(500).json(err)
-    }
-});
+router.delete("/:id", verifyTokenAndAuthorization, controller.deleteUserbyId);
 
 //get
-router.get("/find/:id",verifyTokenAndAdmin, async (req,res)=>{
-    try{
-        const user = await User.findById(req.params.id);
-        const {password,...others} = user._doc;
-        res.status(200).json(others);
-    }catch(err){
-        res.status(500).json(err)
-    }
-});
+router.get("/find/:id", verifyTokenAndAdmin, controller.getUserbyId);
+
+//get All
+router.get("/", verifyTokenAndAdmin, controller.getAllUsers);
+//get Stats
+router.get("/stats", verifyTokenAndAdmin, controller.getStats);
+
 module.exports = router;
