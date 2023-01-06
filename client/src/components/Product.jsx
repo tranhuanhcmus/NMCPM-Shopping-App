@@ -30,7 +30,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: skyblue;
+  background-color: gray;
   position: relative;
   &: hover ${Info} {
     opacity: 1;

@@ -1,0 +1,57 @@
+.widgetSm{
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  padding: 20px;
+  margin-right: 20px;
+  background: linear-gradient(rgba(255,255,255,0.5),rgba(255,255,255,0)), url("https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.15752-9/320846434_1321301805359919_6073764145691003343_n.png?_nc_cat=100&ccb=1-7&_nc_sid=ae9488&_nc_ohc=g9iQPOKWqtYAX8hFhdE&_nc_ht=scontent.fsgn5-5.fna&oh=03_AdQWRPUsC5fOPqBPSXDpDQtkxoyYVjmO-cGANGPL0A4aJw&oe=63DE35E4") center;
+}
+
+.widgetSmTitle{
+  font-size: 22px;
+  font-weight: 600;
+  font-family: "Diplomata SC", cursive;
+}
+
+.widgetSmImg{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.widgetSmList{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.widgetSmListItem{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 20px 0px;
+}
+
+.widgetSmUser{
+  display: flex;
+  flex-direction: column;
+}
+
+.widgetSmUsername{
+  margin-left: 20px;
+  font-weight: 600;
+}
+
+.widgetSmUserTitle{
+  font-weight: 300;
+}
+
+
+
+.widgetSmIcon{
+  font-size: 16px !important;
+  margin-right: 5px;
+}
