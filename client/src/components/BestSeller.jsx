@@ -14,7 +14,7 @@ const Container = styled.div`
 const BestSeller = () => {
   return (
     <Container>
-        POPULAR PRODUCTS !
+        OUR PRODUCTS !
     </Container>
   )
 }

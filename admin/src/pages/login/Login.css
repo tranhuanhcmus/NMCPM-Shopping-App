@@ -1,0 +1,29 @@
+.Login {
+    height: 100vh;
+    flex: 4;
+    background: linear-gradient(rgba(255, 255, 255, 0.5),
+            rgba(255, 255, 255, 0)),
+        url("https://www.qbrick.com/wp-content/uploads/2019/10/typesofeditors.png") center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Login>button {
+    width: 10%;
+    border: none;
+    padding: 15px 20px;
+    background-color: darkcyan;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.Login>input {
+    min-width: 20%;
+    margin: 10px 0px;
+    padding: 10px;
+    border-radius: 10px;
+}

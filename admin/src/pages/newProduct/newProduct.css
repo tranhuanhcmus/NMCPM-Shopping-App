@@ -1,0 +1,55 @@
+.newProduct {
+  flex: 4;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("https://scontent.fsgn5-3.fna.fbcdn.net/v/t1.15752-9/318600843_3055648028060861_5379604962902099004_n.png?_nc_cat=104&ccb=1-7&_nc_sid=ae9488&_nc_ohc=WHOvQYQ2TYsAX-42Zry&tn=xDnO7D2HJqAiBGdG&_nc_ht=scontent.fsgn5-3.fna&oh=03_AdTXXPNM5Y2Lzb6gSV9rWc-TXF5ngnW6wcu664AHoK8CSA&oe=63DE88A9")
+      center;
+  justify-content: center;
+  align-items: center;
+  display: flex ;
+  flex-direction: column;
+}
+.addProductTitle{
+  font-family: "Diplomata SC", cursive;
+}
+.addProductForm {
+  margin-top: 10px;
+}
+
+.addProductItem {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  
+}
+
+.addProductItem > label {
+  color: teal;
+  font-weight: 800;
+  margin-bottom: 10px;
+  margin-left: 90px;
+}
+
+.addProductItem > input {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.addProductItem > select {
+  padding: 10px;
+}
+
+.addProductButton {
+  margin-top: 10px;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: darkblue;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  
+}

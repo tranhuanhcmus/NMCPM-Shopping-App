@@ -1,0 +1,32 @@
+.productList{
+    flex: 4;
+    background: linear-gradient(rgba(255,255,255,0.5),rgba(255,255,255,0)), url("https://scontent.fsgn5-6.fna.fbcdn.net/v/t1.15752-9/320047587_830745398030987_5054801445934075772_n.png?_nc_cat=108&ccb=1-7&_nc_sid=ae9488&_nc_ohc=DYv15_0Cw-wAX-CFXK9&_nc_ht=scontent.fsgn5-6.fna&oh=03_AdSoElXuuMtgBdA4U1h7n1yJpYUdVO3Lj1JDzmPJI1Ac6Q&oe=63DE7BB1") center;
+}
+
+.productListItem{
+    display: flex;
+    align-items: center;
+}
+
+.productListImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+
+.productListEdit{
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #3bb077;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.productListDelete{
+    color: red;
+    cursor: pointer;
+}
