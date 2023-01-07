@@ -7,9 +7,6 @@ import {
     deleteProductFailure,
     deleteProductStart,
     deleteProductSuccess,
-    updateProductFailure,
-    updateProductStart,
-    updateProductSuccess,
     addProductFailure,
     addProductStart,
     addProductSuccess,
@@ -46,13 +43,13 @@ export const deleteProduct = async(id, dispatch) => {
 };
 
 export const updateProduct = async(id, product, dispatch) => {
-    dispatch(updateProductStart());
     try {
         // update
-        const res = await userRequest.put(`/products/{id}`, product);
-        dispatch(updateProductSuccess({ id, product }));
+
+        await userRequest.put(`/products/${id}`, product);
+        alert("update success");
     } catch (err) {
-        dispatch(updateProductFailure());
+        alert(err);
     }
 };
 export const addProduct = async(product, dispatch) => {
