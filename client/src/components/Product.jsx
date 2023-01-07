@@ -30,7 +30,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: gray;
+  background-color: #cfdcfc;
   position: relative;
   &: hover ${Info} {
     opacity: 1;
@@ -64,9 +64,6 @@ const Product = ({ item }) => {
     <Container>
       <Image src={item.image} />
       <Info>
-        <Icon>
-          <ShoppingCartOutlined />
-        </Icon>
         <Link to={`/product/${item._id}`}>
           <Icon>
             <SearchOutlined />

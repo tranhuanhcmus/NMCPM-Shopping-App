@@ -26,52 +26,60 @@ export default function NewProduct() {
   };
   const handleClick = (e) => {
     e.preventDefault();
-    const fileName = new Date().getTime() + file.name;
-    const storage = getStorage(app);
-    const storageRef = ref(storage, fileName);
-    const uploadTask = uploadBytesResumable(storageRef, file);
 
     // Register three observers:
     // 1. 'state_changed' observer, called any time the state changes
     // 2. Error observer, called on failure
     // 3. Completion observer, called on successful completion
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        // Observe state change events such as progress, pause, and resume
-        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("Upload is " + progress + "% done");
-        switch (snapshot.state) {
-          case "paused":
-            console.log("Upload is paused");
-            break;
-          case "running":
-            console.log("Upload is running");
-            break;
-          default:
+    var ele = document.getElementById("form");
+    var chk_status = ele.checkValidity();
+    ele.reportValidity();
+    if (chk_status) {
+      const fileName = new Date().getTime() + file.name;
+      const storage = getStorage(app);
+      const storageRef = ref(storage, fileName);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          // Observe state change events such as progress, pause, and resume
+          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+            default:
+          }
+          if (progress == 100) {
+            alert("Add success!");
+          }
+        },
+        (error) => {
+          alert("Have Errors!");
+        },
+        () => {
+          // Handle successful uploads on complete
+          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log({ ...inputs, image: downloadURL, categories: cat });
+            const product = { ...inputs, image: downloadURL, categories: cat };
+            addProduct(product, dispatch);
+          });
         }
-      },
-      (error) => {
-        // Handle unsuccessful uploads
-      },
-      () => {
-        // Handle successful uploads on complete
-        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log({ ...inputs, image: downloadURL, categories: cat });
-          const product = { ...inputs, image: downloadURL, categories: cat };
-          addProduct(product, dispatch);
-        });
-      }
-    );
+      );
+    }
   };
 
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">ADD NEW PRODUCT FOR YOUR WEBSITE</h1>
-      <form className="addProductForm">
+      <form className="addProductForm" id="form">
         <div className="addProductItem">
           <label>Image</label>
           <input
@@ -79,6 +87,7 @@ export default function NewProduct() {
             type="file"
             id="file"
             onChange={(e) => setFile(e.target.files[0])}
+            required
           />
         </div>
         <div className="addProductItem">
@@ -88,6 +97,7 @@ export default function NewProduct() {
             type="text"
             placeholder="Title..."
             onChange={handleChange}
+            required
           />
         </div>
         <div className="addProductItem">
@@ -97,6 +107,7 @@ export default function NewProduct() {
             type="text"
             placeholder="Description..."
             onChange={handleChange}
+            required
           />
         </div>
         <div className="addProductItem">
@@ -106,11 +117,17 @@ export default function NewProduct() {
             type="number"
             placeholder="100"
             onChange={handleChange}
+            required
           />
         </div>
         <div className="addProductItem">
           <label>Categories</label>
-          <input type="text" placeholder="Tshirt,Man" onChange={handleCat} />
+          <input
+            required
+            type="text"
+            placeholder="Tshirt,Man"
+            onChange={handleCat}
+          />
         </div>
         <div className="addProductItem">
           <label>Stock</label>
@@ -119,7 +136,12 @@ export default function NewProduct() {
             <option value="false">No</option>
           </select>
         </div>
-        <button onClick={handleClick} className="addProductButton">
+        <button
+          onClick={handleClick}
+          className="addProductButton"
+          type="submit"
+          form="form"
+        >
           Create
         </button>
       </form>

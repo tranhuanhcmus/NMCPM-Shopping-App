@@ -86,17 +86,17 @@ const Login = () => {
         <Form>
           <Input
             placeholder="Username"
-            onChange={(e) => setUserName(e.target.value)}
+            onChange={(e) => setUserName(e.target.value.split(" ").join(""))}
           />
           <Input
             onChange={(e) => setPassWord(e.target.value)}
             placeholder="Password"
             type={`password`}
           />
-          <Button disabled={isFetching} onClick={handleClick}>
+          <Button disabled={false} onClick={handleClick}>
             LOGIN
           </Button>
-          {error && <Error>Some Thing went wrong ...</Error>}
+          {error && <Error>Wrong password or not exist username!</Error>}
           <Link>Forgot Password?</Link>
           <Link>Create account</Link>
         </Form>

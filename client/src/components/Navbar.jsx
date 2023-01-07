@@ -7,12 +7,13 @@ import { mobile } from "..//responsive";
 import { Link } from "react-router-dom";
 import Home from "../pages/Home";
 import { logout } from "../redux/userRedux";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Container = styled.div`
   height: 60px;
   ${mobile({ height: "90px" })}
-  background-color: #A9A9A9; ;
+  background-color: #A9A9A9;
+  padding-bottom: 5px;
 `;
 const Wrapper = styled.div`
   padding: 10px 20px;
@@ -27,16 +28,22 @@ const Left = styled.div`
 `;
 
 const Center = styled.div`
-  flex: 1;
   display: flex;
   text-align: center;
 `;
 const Right = styled.div`
-  flex: 1;
+  width: 20%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   ${mobile({ flex: 2, JustifyContent: "center" })}
+  a:hover {
+    div {
+      color: white;
+      transform: translateY(-10%);
+      transition: transform 0.5s;
+    }
+  }
 `;
 
 const Input = styled.input`
@@ -68,13 +75,21 @@ const SearchContainer = styled.div`
 const MenuItems = styled.div`
   font-size: 17px;
   font-family: "Diplomata SC", cursive;
-  cursor: pointer;
   margin-left: 25px;
   color: black;
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 const MenuProduct = styled.div`
   display: flex;
+  cursor: pointer;
+
+  a:hover {
+    div {
+      color: white;
+      transform: translateY(-10%);
+      transition: transform 0.5s;
+    }
+  }
 `;
 const Product = styled.div`
   font-family: "Diplomata SC", cursive;
@@ -90,8 +105,8 @@ const Product = styled.div`
 
 function Navbar() {
   const user = useSelector((state) => state.user.currentUser);
-console.log(user);
-  const state=useSelector((state)=>state)
+  console.log(user);
+  const state = useSelector((state) => state);
   const quantity = useSelector((state) => state.cart.quantity);
   const dispatch = useDispatch();
   return (
@@ -102,14 +117,21 @@ console.log(user);
             <Logo>MSND</Logo>
           </Link>
           <MenuProduct>
-            <Link style={{ textDecoration: "none" }} to="/BagProducts">
+            <Link style={{ textDecoration: "none" }} to="/products/Bag">
               <Product>Bag</Product>
             </Link>
-            <Link style={{ textDecoration: "none" }} to="/TShirtProducts">
+            <Link style={{ textDecoration: "none" }} to="/products/Tshirt">
               <Product>T Shirt</Product>
             </Link>
-            <Link style={{ textDecoration: "none" }} to="/JacketProducts">
+            <Link style={{ textDecoration: "none" }} to="/products/Jacket">
               <Product>Jacket</Product>
+            </Link>
+            <Link style={{ textDecoration: "none" }} to="/products/men">
+              <Product>Men</Product>
+            </Link>
+
+            <Link style={{ textDecoration: "none" }} to="/products/women">
+              <Product>Women</Product>
             </Link>
           </MenuProduct>
         </Left>
@@ -120,25 +142,17 @@ console.log(user);
           </SearchContainer>
         </Center>
         <Right>
-        
-          {
-          user? 
-          <Link style={{ textDecoration: "none" }} onClick={()=> {dispatch(logout(user));
-          console.log(state);}} >
-            <MenuItems>Log Out</MenuItems>
-          </Link> 
-          : <>
-          <Link style={{ textDecoration: "none" }} to="/Register">
-                <MenuItems>Register</MenuItems>
+          {user ? (
+            <>
+              <Link
+                style={{ textDecoration: "none" }}
+                onClick={() => {
+                  dispatch(logout(user));
+                  console.log(state);
+                }}
+              >
+                <MenuItems>Log Out</MenuItems>
               </Link>
-          <Link style={{ textDecoration: "none" }} to="/Login">
-                <MenuItems>Sign In</MenuItems>
-            </Link>
-            </>
-            
-            }
-
-
               <Link style={{ textDecoration: "none" }} to="/Cart">
                 <MenuItems>
                   <Badge
@@ -150,10 +164,22 @@ console.log(user);
                   </Badge>
                 </MenuItems>
               </Link>
-              <MenuItems>
-                <AccountCircleOutlined color="action" />
-              </MenuItems>
-            </Right>
+            </>
+          ) : (
+            <>
+              <Link style={{ textDecoration: "none" }} to="/Register">
+                <MenuItems>Register</MenuItems>
+              </Link>
+              <Link style={{ textDecoration: "none" }} to="/Login">
+                <MenuItems>Sign In</MenuItems>
+              </Link>
+            </>
+          )}
+
+          <MenuItems>
+            <AccountCircleOutlined color="action" />
+          </MenuItems>
+        </Right>
       </Wrapper>
     </Container>
   );

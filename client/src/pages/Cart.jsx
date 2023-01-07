@@ -8,7 +8,7 @@ import StripeCheckout from "react-stripe-checkout";
 import { useState, useEffect } from "react";
 import { userRequest } from "../requestMethod";
 import { useNavigate } from "react-router";
-
+import { Link } from "react-router-dom";
 const KEY = process.env.REACT_APP_STRIPE;
 
 const Container = styled.div``;
@@ -149,6 +149,7 @@ const Button = styled.button`
   background-color: black;
   color: white;
   font-weight: 1000;
+  cursor: pointer;
 `;
 
 const Cart = () => {
@@ -181,13 +182,13 @@ const Cart = () => {
     <Container>
       <Navbar />
       <Wrapper>
-        <Title>YOUR BAG</Title>
+        <Title>YOUR BAG ({cart.products.length})</Title>
         <Top>
-          <TopButton>COUNTINUE SHOPPING</TopButton>
-          <TopTexts>
-            <TopText>Shopping bag({cart.products.length})</TopText>
-          </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          <TopButton>
+            <Link style={{ textDecoration: "none" }} to="/">
+              CONTINUE SHOPPING
+            </Link>
+          </TopButton>
         </Top>
         <Bottom>
           <Info>
