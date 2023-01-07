@@ -16,6 +16,7 @@ const Login =()=>{
         <div className="Login">
             <input type="text" placeholder="username" onChange={e=>setUsername(e.target.value)}/>
             <input type="password" placeholder="password" onChange={e=>setPassword(e.target.value)}/>
+            
             <button onClick={handleClick} >Login</button>
         </div>
     )

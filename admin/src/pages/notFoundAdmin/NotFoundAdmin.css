@@ -1,0 +1,17 @@
+.NotFound {
+    height: 100vh;
+    flex: 4;
+    background: linear-gradient(rgba(255, 255, 255, 0.5),
+            rgba(255, 255, 255, 0)),
+        url("https://www.qbrick.com/wp-content/uploads/2019/10/typesofeditors.png") center;
+    align-items: center;
+    justify-content: center;
+    display:flex;
+    
+}
+.NotFound>h1{
+    margin-bottom: 600px;
+    color:cadetblue;
+    font-family: "Diplomata SC", cursive;
+}
+

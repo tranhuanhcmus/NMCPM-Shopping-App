@@ -24,7 +24,7 @@ export default function Sidebar() {
             <Link to="/Login" className="link">
               <li className="sidebarListItem">
                 <LockOpenOutlined className="sidebarIcon" />
-                Login
+                Login & Logout
               </li>
             </Link>
           </ul>

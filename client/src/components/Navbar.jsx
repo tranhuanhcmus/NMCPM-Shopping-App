@@ -6,7 +6,8 @@ import { AccountCircleOutlined } from "@material-ui/icons";
 import { mobile } from "..//responsive";
 import { Link } from "react-router-dom";
 import Home from "../pages/Home";
-import { useSelector } from "react-redux";
+import { logout } from "../redux/userRedux";
+import { useDispatch,useSelector } from "react-redux";
 
 const Container = styled.div`
   height: 60px;
@@ -88,8 +89,11 @@ const Product = styled.div`
 `;
 
 function Navbar() {
+  const user = useSelector((state) => state.user.currentUser);
+console.log(user);
+  const state=useSelector((state)=>state)
   const quantity = useSelector((state) => state.cart.quantity);
-
+  const dispatch = useDispatch();
   return (
     <Container>
       <Wrapper>
@@ -116,27 +120,40 @@ function Navbar() {
           </SearchContainer>
         </Center>
         <Right>
+        
+          {
+          user? 
+          <Link style={{ textDecoration: "none" }} onClick={()=> {dispatch(logout(user));
+          console.log(state);}} >
+            <MenuItems>Log Out</MenuItems>
+          </Link> 
+          : <>
           <Link style={{ textDecoration: "none" }} to="/Register">
-            <MenuItems>Register</MenuItems>
-          </Link>
+                <MenuItems>Register</MenuItems>
+              </Link>
           <Link style={{ textDecoration: "none" }} to="/Login">
-            <MenuItems>Sign In</MenuItems>
-          </Link>
-          <Link style={{ textDecoration: "none" }} to="/Cart">
-            <MenuItems>
-              <Badge
-                overlap="rectangular"
-                badgeContent={quantity}
-                color="primary"
-              >
-                <ShoppingCartOutlined color="action" />
-              </Badge>
-            </MenuItems>
-          </Link>
-          <MenuItems>
-            <AccountCircleOutlined color="action" />
-          </MenuItems>
-        </Right>
+                <MenuItems>Sign In</MenuItems>
+            </Link>
+            </>
+            
+            }
+
+
+              <Link style={{ textDecoration: "none" }} to="/Cart">
+                <MenuItems>
+                  <Badge
+                    overlap="rectangular"
+                    badgeContent={quantity}
+                    color="primary"
+                  >
+                    <ShoppingCartOutlined color="action" />
+                  </Badge>
+                </MenuItems>
+              </Link>
+              <MenuItems>
+                <AccountCircleOutlined color="action" />
+              </MenuItems>
+            </Right>
       </Wrapper>
     </Container>
   );
