@@ -117,6 +117,7 @@ export default function NewProduct() {
             type="number"
             placeholder="100"
             onChange={handleChange}
+            step="0.1"
             required
           />
         </div>

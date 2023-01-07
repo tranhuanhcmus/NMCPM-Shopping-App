@@ -74,6 +74,7 @@ export default function Product() {
               type="number"
               placeholder={product.price}
               id="price"
+              step="0.1"
               required
             />
             <label>In Stock</label>
